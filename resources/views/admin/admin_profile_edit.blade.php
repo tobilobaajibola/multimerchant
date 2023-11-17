@@ -10,7 +10,8 @@
                     <!-- <img class="rounded-circle avatar-xl" src="{{ asset('backend/assets/images/small/img-5.jpg')}}" alt="Card image cap"> -->
                 </center>
                     <div class="card-body">
-                        <form  method="POST" action="{{ route('login') }}">
+                        <form  method="POST" action="{{ route('store.profile') }}" enctype="multipart/form-data">
+                            @csrf
                             <h4 class="card-title">Textual inputs</h4>
                             <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
                                 textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>
@@ -35,13 +36,13 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Profile Image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" name="username"  id="image" >
+                                    <input class="form-control" type="file" name="profile_image"  id="image" >
                                 </div>
                             </div>
                              <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                     <img class="rounded avatar-lg" id="showImage" src="{{ asset('backend/assets/images/small/img-5.jpg')}}" alt="Card image cap">
+                                     <img class="rounded avatar-lg" id="showImage" src="{{(!empty($editData->profile_image))? url('upload/admin_images/'.$editData->profile_image) : url('upload/admin_images/no_image.jpg')}}" alt="Card image cap">
                                 </div>
                             </div>
                            <div class="form-group mb-3 text-center row mt-3 pt-1">
